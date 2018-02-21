@@ -65,7 +65,7 @@ func main() {
 
   // initialize message counter and limit.
   messageCounter = 0;
-  messageLimiter = 100000;
+  messageLimiter = 10;
 
   // record start time.
   start := time.Now()
@@ -96,6 +96,7 @@ func main() {
       os.Exit(1)
   	}
 
+    // print message; disabled to avoid unnecessary overhead to the measurements.
   	//fmt.Printf("Message is stored in topic(%s)/partition(%d)/offset(%d)\n", topic, partition, offset)
   }
 

@@ -1,0 +1,21 @@
+Kafka/Sequential Message Producing
+
+Transactions	Duration	TPS
+------------	--------	---------
+          10	     9ms	    1.110
+         100	    54ms	    1.851
+       1.000	   945ms	    1.057
+      10.000	      5s	    2.198
+     100.000	     44s	    2.238
+   1.000.000	 14m 57s	    1.114
+   
+NATS/Sequential Message Producing
+
+Transactions	Duration	TPS
+------------	--------	---------
+          10	Not measurable
+         100	Not measurable
+       1.000	     1ms	  999.900
+      10.000	     6ms	1.666.444
+     100.000	    135s	  740.646
+   1.000.000	    3.3s	  302.762
