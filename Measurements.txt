@@ -9,7 +9,7 @@ Transactions	Duration	TPS
      100.000	     44s	    2.238
    1.000.000	 14m 57s	    1.114
    
-NATS/Sequential Message Producing
+NATS (www.nats.io)/Sequential Message Producing
 
 Transactions	Duration	TPS
 ------------	--------	---------
