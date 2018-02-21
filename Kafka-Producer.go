@@ -11,6 +11,7 @@ import "fmt"
 import "os"
 import "github.com/Shopify/sarama"
 import "strconv"
+import "time"
 
 // main function.
 func main() {
@@ -18,8 +19,8 @@ func main() {
   var brokers []string
   var topic string
   var messageText string
-  var numberOfMessages int
-  var maxNumberOfMessages int
+  var messageCounter int
+  var messageLimiter int
 
   // initialize configuration.
 	config := sarama.NewConfig()
@@ -62,28 +63,29 @@ func main() {
   // set kafka topic name.
   topic = "test"
 
-  // set message text.
-  messageText = "Something cool"
-
   // initialize message counter and limit.
-  numberOfMessages = 0;
-  maxNumberOfMessages = 100;
+  messageCounter = 0;
+  messageLimiter = 100000;
 
-  for numberOfMessages < maxNumberOfMessages {
+  // record start time.
+  start := time.Now()
+
+  for messageCounter < messageLimiter {
     // increment message counter.
-    numberOfMessages++
+    messageCounter++
 
-    var latestMessage string
-    latestMessage = messageText + strconv.Itoa(numberOfMessages)
+    // set message text.
+    messageText = "Something cool" + strconv.Itoa(messageCounter)
 
     // create message.
     message := &sarama.ProducerMessage{
       Topic: topic,
-      Value: sarama.StringEncoder(latestMessage),
+      Value: sarama.StringEncoder(messageText),
     }
 
     // send message.
-    partition, offset, messageSendingError := producer.SendMessage(message)
+    //partition, offset, messageSendingError := producer.SendMessage(message)
+    _, _, messageSendingError := producer.SendMessage(message)
 
     // handle message sending error.
     if messageSendingError != nil {
@@ -94,6 +96,20 @@ func main() {
       os.Exit(1)
   	}
 
-  	fmt.Printf("Message is stored in topic(%s)/partition(%d)/offset(%d)\n", topic, partition, offset)
+  	//fmt.Printf("Message is stored in topic(%s)/partition(%d)/offset(%d)\n", topic, partition, offset)
   }
+
+  // record stop time.
+  stop := time.Now()
+
+  // calculate elapsed time.
+  elapsed := stop.Sub(start)
+
+  // print results.
+  fmt.Println("Elapsed time:")
+  fmt.Println(elapsed)
+  fmt.Println("Time used per transaction:")
+  fmt.Println(elapsed.Seconds() / float64(messageLimiter))
+  fmt.Println("Transactions per second:")
+  fmt.Println(float64(messageLimiter) / elapsed.Seconds())
 }
