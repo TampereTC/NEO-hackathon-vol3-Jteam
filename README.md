@@ -1,6 +1,6 @@
 # NEO-hackathon-vol3-Jteam
 
-#; i.e. ping-pong edition.# Kafka and Go
+## Kafka and Go
 
 Kafka message producer and consumer implemented with Go:
 - Kafka-Serial-Producer.go
