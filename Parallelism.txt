@@ -1,0 +1,32 @@
+All default configurations.
+
+Threads		Messages	Kafka TPS	NATS TPS
+--------	----------	----------	----------
+5			1.000.000	2.313		370.091
+10			1.000.000	2.173		417.593
+20			1.000.000	1.984		427.608
+50			1.000.000	1.783		--		Logging added too much overhead; NATS server time-out without screen I/O.
+100			1.000.000	--			--		Logging added too much overhead; NATS server time-out without screen I/O.
+200			1.000.000	--			--		Logging added too much overhead; NATS server time-out without screen I/O.
+
+Kafka partitions increased to 10.
+
+Threads		Messages	Kafka TPS
+--------	----------	----------
+5			1.000.000	
+10			1.000.000	
+20			1.000.000	
+50			1.000.000
+100			1.000.000
+200			1.000.000
+
+Partition rotation added to Kafka Go producer.
+
+Threads		Messages	Kafka TPS
+--------	----------	----------
+5			1.000.000	
+10			1.000.000	
+20			1.000.000	
+50			1.000.000
+100			1.000.000
+200			1.000.000
