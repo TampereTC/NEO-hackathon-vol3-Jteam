@@ -1,3 +1,6 @@
+21.2.2018
+=========
+
 Kafka/Sequential Message Producing
 
 Transactions	Duration	TPS
@@ -19,3 +22,72 @@ Transactions	Duration	TPS
       10.000	     6ms	1.666.444
      100.000	    135s	  740.646
    1.000.000	    3.3s	  302.762
+
+22.2.2018
+=========
+   
+Kafka/Sequential Message Producing (10 partitions)
+
+Transactions	Duration	TPS
+------------	--------	---------
+          10	    17ms	      588
+         100	    76ms	    1.315
+       1.000	   484ms	    2.065
+      10.000	    4,2s	    2.355
+     100.000	   42,0s	    2.372
+   1.000.000	     ---          ---
+   
+Kafka/Sequential Message Producing (all defaults, re-run of first Kafka tests)
+
+Transactions	Duration	TPS
+------------	--------	---------
+          10	    41ms	      240
+         100	   212ms	      471
+       1.000	   781ms	    1.279
+      10.000	    4,9s	    2.049
+     100.000	   49,1s	    2.036
+   1.000.000	     ---          ---
+
+Kafka/Sequential Message Producing (10 partitions, buffer size 1024, replication factor 1)
+
+Transactions	Duration	TPS
+------------	--------	---------
+          10	    39ms	      253
+         100	   190ms	      524
+       1.000	   768ms	    1.301
+      10.000	    4,6s	    2.194
+     100.000	   45,5s	    2.195
+   1.000.000	     ---          ---
+
+Kafka/Sequential Object Message Producing (10 partitions, buffer size 1024, replication factor 1)
+
+Transactions	Duration	TPS
+------------	--------	---------
+          10	    18ms	      555
+         100	    51ms	    1.960
+       1.000	   398ms	    2.509
+      10.000	    3,7s	    2.736
+     100.000	   36,7s	    2.722
+   1.000.000	     ---          ---
+
+Kafka/Sequential Object Message Producing (10 partitions, buffer size 24800, replication factor 1)
+
+Transactions	Duration	TPS
+------------	--------	---------
+          10	    28ms	      350
+         100	    113ms	      884
+       1.000	    553ms	    1.808
+      10.000	    4,0s	    2.504
+     100.000	   40,0s	    2.500
+   1.000.000	     ---          ---
+
+NATS (www.nats.io)/Sequential Object Message Producing
+
+Transactions	Duration	TPS
+------------	--------	---------
+          10	   500us	   20.000
+         100	     2ms	   49.995
+       1.000	    25ms	   39.994
+      10.000	   248ms	   40.317
+     100.000	    2,6s	   37.631
+   1.000.000	   26,3s	   37.925

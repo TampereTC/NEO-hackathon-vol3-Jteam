@@ -10,17 +10,19 @@ package main
 import "fmt"
 import "os"
 import "github.com/Shopify/sarama"
-import "strconv"
 import "time"
+import "encoding/json"
+import "./message"
 
 // main function.
 func main() {
   //variables.
   var brokers []string
-  var topic string
-  var messageText string
+  var publishTopic string
+  var sentMessage message.Message
   var messageCounter int
   var messageLimiter int
+  var jsonMessage []byte
 
   // initialize configuration.
 	config := sarama.NewConfig()
@@ -60,12 +62,15 @@ func main() {
 		}
 	}()
 
-  // set kafka topic name.
-  topic = "test"
+  // set kafka publish topic name.
+  publishTopic = "foo"
+
+  // initialize message.
+  sentMessage.MessageText = "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua."
 
   // initialize message counter and limit.
   messageCounter = 0;
-  messageLimiter = 1000000;
+  messageLimiter = 100000;
 
   // record start time.
   start := time.Now()
@@ -74,13 +79,23 @@ func main() {
     // increment message counter.
     messageCounter++
 
-    // set message text.
-    messageText = "Something cool" + strconv.Itoa(messageCounter)
+    // set message counter.
+    sentMessage.MessageCounter = messageCounter
+
+    // set last message status.
+    if messageCounter == messageLimiter {
+      sentMessage.LastMessage = true
+    } else {
+      sentMessage.LastMessage = false
+    }
+
+    // marshall message.
+    jsonMessage, _ = json.Marshal(sentMessage)
 
     // create message.
     message := &sarama.ProducerMessage{
-      Topic: topic,
-      Value: sarama.StringEncoder(messageText),
+      Topic: publishTopic,
+      Value: sarama.ByteEncoder(jsonMessage),
     }
 
     // send message.
