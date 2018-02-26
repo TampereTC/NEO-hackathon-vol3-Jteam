@@ -8,7 +8,7 @@ and performace measurements.
 
 // import packages.
 import "fmt"
-import "log"
+//import "log"
 import "os"
 import "time"
 import "sync"
@@ -46,7 +46,7 @@ func main() {
     go publishMessage(publishTopic, threadIndex, numberOfMessages/numberOfThreads, &threads)
 
     // print log message.
-    log.Printf("Thread %d executes.\n", threadIndex)
+    //log.Printf("Thread %d executes.\n", threadIndex)
 
     // increment thread index.
     threadIndex++
@@ -118,7 +118,7 @@ func publishMessage(publishTopic string, threadIndex int, numberOfMessages int, 
 	}()
 
   // print message.
-  log.Printf("Connected to 'localhost:9092'.\n")
+  //log.Printf("Connected to 'localhost:9092'.\n")
 
 	// initialize message.
   sentMessage.MessageText = "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua."
@@ -127,7 +127,7 @@ func publishMessage(publishTopic string, threadIndex int, numberOfMessages int, 
   messageIndex = 0;
 
   // print log message.
-  log.Printf("Publishing messages to '%s'.\n", publishTopic)
+  //log.Printf("Publishing messages to '%s'.\n", publishTopic)
 
   // go through all messages.
   for messageIndex < numberOfMessages {

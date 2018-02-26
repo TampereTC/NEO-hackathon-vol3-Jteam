@@ -28,7 +28,7 @@ func main() {
 
   // set number of messages, number of threads and thread index.
   numberOfMessages = 1000000
-  numberOfThreads = 50
+  numberOfThreads = 200
   threadIndex = 0
 
   // initialize threads.
@@ -46,7 +46,7 @@ func main() {
     go publishMessage(publishTopic, threadIndex, numberOfMessages/numberOfThreads, &threads)
 
     // print log message.
-    log.Printf("Thread %d executed.\n", threadIndex)
+    //log.Printf("Thread %d executed.\n", threadIndex)
 
     // increment thread index.
     threadIndex++
